@@ -1,0 +1,44 @@
+---
+# installation: `pre-commit install -t pre-commit -t commit-msg`
+repos:
+  - repo: https://github.com/talos-systems/conform
+    rev: master
+    hooks:
+      - id: conform
+        stages:
+          - commit-msg
+  - repo: git://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0
+    hooks:
+    - id: check-merge-conflict
+    - id: debug-statements
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+  - repo: https://github.com/pycqa/pylint
+    rev: master
+    hooks:
+      # C0103 - invalid case style for object name
+      # C0114 - missing module docstring
+      # C0301 - line too long
+      # C0413 - imports at top of file
+      # E0401 - unable to import module
+      # R0902 - too many instance attributes
+      # R0911 - too many return statements
+      # R0912 - too many branches
+      # R0914 - too many local variables
+      # R0915 - too many statements
+      # R1702 - too many nested blocks
+      # W0212 - access to a protected member
+      - id: pylint
+        args:
+          - --max-line-length=160
+          - --ignore-imports=yes
+          - --disable=C0103,C0114,C0301,C0413,E0401,R0902,R0911,R0912,R0914,R0915,R1702,W0212
+  - repo: https://github.com/pycqa/bandit
+    rev: master
+    hooks:
+      - id: bandit
+  - repo: https://github.com/ansible/ansible-lint
+    rev: master
+    hooks:
+      - id: ansible-lint

@@ -1,0 +1,6 @@
+---
+- name: Sync GitHub teams and settings
+  github_config:
+    url: "{{ github_config.url }}"
+    token: "{{ github_config.token }}"
+    config: "{{ github_config.orgs }}"

@@ -1,0 +1,5 @@
+---
+github_config:
+  token: ""
+  url: https://api.github.com
+  config: {}
